@@ -1,0 +1,6 @@
+﻿services:
+  bca.web:
+    image: bca.web
+    build:
+      context: .
+      dockerfile: src/BCA.Web/Dockerfile
