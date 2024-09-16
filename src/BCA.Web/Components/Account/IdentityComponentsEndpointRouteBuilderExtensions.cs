@@ -1,16 +1,16 @@
-using System.Security.Claims;
-using System.Text.Json;
+using BCA.Infrastructure.Identity.Entities;
+using BCA.Web.Components.Account.Pages;
+using BCA.Web.Components.Account.Pages.Manage;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using BCA.Web.Components.Account.Pages;
-using BCA.Web.Components.Account.Pages.Manage;
-using BCA.Web.Data;
+using System.Security.Claims;
+using System.Text.Json;
 
-namespace Microsoft.AspNetCore.Routing;
+namespace BCA.Web.Components.Account;
 
 internal static class IdentityComponentsEndpointRouteBuilderExtensions
 {

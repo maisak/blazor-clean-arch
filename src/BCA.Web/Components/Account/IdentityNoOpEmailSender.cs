@@ -1,6 +1,6 @@
+using BCA.Infrastructure.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using BCA.Web.Data;
 
 namespace BCA.Web.Components.Account;
 
