@@ -1,7 +1,21 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@using BCA.Application.Features.Todo
+@using BCA.Application.Models.Todo
+@using MediatR
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<button @onclick="Callback">create</button>
+
+@code {
+    [Inject] private ISender Sender { get; set; } = null!;
+    private void Callback()
+    {
+        Sender.Send(new CreateTodoList(new CreateTodoListDto { Name = "" }));
+    }
+}

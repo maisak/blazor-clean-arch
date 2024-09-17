@@ -1,3 +1,4 @@
+using BCA.Application;
 using BCA.Infrastructure.Database;
 using BCA.Web.Components;
 using BCA.Web.Configuration;
@@ -5,7 +6,10 @@ using BCA.Web.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
+builder.Services
+    .AddRazorComponents()
+    .AddInteractiveServerComponents();
+builder.Services.AddApplicationServices();
 builder.Services.AddDatabaseServices(builder.Configuration);
 builder.Services.AddIdentity();
 builder.ConfigureSecurityFeatures();
@@ -23,7 +27,7 @@ else
 }
 app.ConfigureSecurityFeatures();
 app.UseStaticFiles();
-app.MapRazorComponents<App>();
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 app.MapIdentityEndpoints();
 
 app.Run();
