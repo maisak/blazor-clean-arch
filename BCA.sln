@@ -19,6 +19,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCA.Infrastructure", "src\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCA.Application", "src\BCA.Application\BCA.Application.csproj", "{248B3353-F8CA-46D7-BE45-FFB61608C8A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCA.Domain", "src\BCA.Domain\BCA.Domain.csproj", "{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8EB1B8E1-A611-4DB4-8BA7-4AACE34C0C35}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\add-migration.ps1 = scripts\add-migration.ps1
+		scripts\get-paths.ps1 = scripts\get-paths.ps1
+		scripts\list-migrations.ps1 = scripts\list-migrations.ps1
+		scripts\remove-last-migration.ps1 = scripts\remove-last-migration.ps1
+		scripts\run-unit-tests.ps1 = scripts\run-unit-tests.ps1
+		scripts\update-db.ps1 = scripts\update-db.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +49,15 @@ Global
 		{248B3353-F8CA-46D7-BE45-FFB61608C8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{248B3353-F8CA-46D7-BE45-FFB61608C8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{248B3353-F8CA-46D7-BE45-FFB61608C8A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A387BC01-C398-47B4-A0AC-47280C5BD5C1} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
 		{4F25D4FB-CCEE-47C9-89DB-6052B9FB0D88} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
 		{248B3353-F8CA-46D7-BE45-FFB61608C8A5} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
+		{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
 	EndGlobalSection
 EndGlobal
