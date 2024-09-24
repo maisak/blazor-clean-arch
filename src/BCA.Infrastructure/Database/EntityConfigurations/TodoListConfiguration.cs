@@ -8,6 +8,7 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
 {
 	public void Configure(EntityTypeBuilder<TodoList> builder)
 	{
+		builder.ToTable("TodoLists");
 		builder.Property(f => f.Name).IsRequired().HasMaxLength(100);
 	}
 }

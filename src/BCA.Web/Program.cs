@@ -30,4 +30,6 @@ app.UseStaticFiles();
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 app.MapIdentityEndpoints();
 
+await app.MigrateDatabase();
+
 app.Run();

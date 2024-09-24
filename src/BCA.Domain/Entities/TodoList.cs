@@ -2,7 +2,7 @@
 
 namespace BCA.Domain.Entities;
 
-public class TodoList : AuditableEntity
+public class TodoList : BaseEntity
 {
 	public string Name { get; set; } = null!;
 }
