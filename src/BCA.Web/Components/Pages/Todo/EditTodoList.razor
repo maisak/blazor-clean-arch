@@ -1,0 +1,43 @@
+﻿@page "/edit-todo"
+@page "/edit-todo/{Id:int}"
+@using BCA.Application.Features.Todo
+@using BCA.Application.Models.Todo
+@using MediatR
+
+@rendermode InteractiveServer
+
+@if (Id is null)
+{
+    <PageTitle>Create a list</PageTitle>
+    <h3>Create a list</h3>
+} else {
+    <PageTitle>Edit "@CurrentList.Name"</PageTitle>
+    <h3>Edit "@CurrentList.Name"</h3>
+}
+
+<div>
+    <input type="text" class="form-control" placeholder="Name" @bind="@CurrentList.Name" />
+    <button class="btn btn-primary" @onclick="SaveList">Save</button>
+</div>
+
+@code {
+    [Parameter] public int? Id { get; set; }
+    
+    [Inject] private ISender Sender { get; set; } = null!;
+
+    private TodoListDto CurrentList { get; set; } = new ();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            CurrentList = await Sender.Send(new GetTodoList(Id.Value));
+        }
+    }
+
+    private async Task SaveList()
+    {
+        await Sender.Send(new SaveTodoList(CurrentList));
+    }
+
+}

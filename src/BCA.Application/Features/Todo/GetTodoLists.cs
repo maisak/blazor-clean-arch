@@ -1,15 +1,19 @@
-﻿using BCA.Application.Models.Todo;
+﻿using AutoMapper;
+using BCA.Application.Contracts;
+using BCA.Application.Models.Todo;
 using MediatR;
 
 namespace BCA.Application.Features.Todo;
 
-public record GetTodoLists : IRequest<IEnumerable<TodoListDto>>
+public record GetTodoLists : IRequest<List<TodoListDto>>
 {
-	public class GetTodoListsHandler : IRequestHandler<GetTodoLists, IEnumerable<TodoListDto>>
+	public class GetTodoListsHandler(ITodoListsRepository repository, IMapper mapper) 
+		: IRequestHandler<GetTodoLists, List<TodoListDto>>
 	{
-		public async Task<IEnumerable<TodoListDto>> Handle(GetTodoLists request, CancellationToken cancellationToken)
+		public async Task<List<TodoListDto>> Handle(GetTodoLists request, CancellationToken cancellationToken)
 		{
-			return null;
+			var lists = await repository.GetTodoLists(cancellationToken);
+			return mapper.Map<List<TodoListDto>>(lists);
 		}
 	}
 }

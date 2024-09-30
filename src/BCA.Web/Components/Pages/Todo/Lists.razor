@@ -1,0 +1,47 @@
+﻿@page "/lists"
+
+@using BCA.Application.Features.Todo
+@using BCA.Application.Models.Todo
+@using MediatR
+
+<PageTitle>Lists</PageTitle>
+
+@if (TodoLists.Any())
+{
+    <table class="table table-borderless table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th class="text-end">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var todoList in TodoLists)
+        {
+            <tr>
+                <td>@todoList.Name</td>
+                <td class="text-end">
+                    <a class="btn btn-primary" role="button" href="/edit-todo/@todoList.Id">Edit</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <br/>
+    <a href="/edit-todo">Create new list</a>
+}
+else
+{
+    <p>Loading ...</p>
+}
+
+@code {
+    [Inject] private ISender Sender { get; set; } = null!;
+    private List<TodoListDto> TodoLists { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        TodoLists = await Sender.Send(new GetTodoLists());
+    }
+
+}

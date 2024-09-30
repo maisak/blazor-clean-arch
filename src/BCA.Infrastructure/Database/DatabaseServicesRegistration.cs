@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BCA.Application.Contracts;
+using BCA.Infrastructure.Database.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +14,10 @@ public static class DatabaseServicesRegistration
 		services.AddDbContext<ApplicationDbContext>(options =>
 			options
 				.UseSqlServer(configuration.GetConnectionString("Default"))
+				.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
 				.EnableSensitiveDataLogging());
+
+		services.AddScoped<ITodoListsRepository, TodoListsRepository>();
         
 		return services;
 	}
