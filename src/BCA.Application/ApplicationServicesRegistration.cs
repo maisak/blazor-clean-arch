@@ -13,7 +13,8 @@ public static class ApplicationServicesRegistration
 		services.AddValidatorsFromAssemblies(assemblies);
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
 		services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies));
-	
+		services.AddAutoMapper(assemblies);
+		
 		return services;
 	}
 }
