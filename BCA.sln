@@ -31,6 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8EB1
 		scripts\update-db.ps1 = scripts\update-db.ps1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{56E40DF6-7840-4449-8058-590442668044}"
+	ProjectSection(SolutionItems) = preProject
+		docs\solution-overview.png = docs\solution-overview.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,5 +64,6 @@ Global
 		{4F25D4FB-CCEE-47C9-89DB-6052B9FB0D88} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
 		{248B3353-F8CA-46D7-BE45-FFB61608C8A5} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
 		{ABD168A2-1CBB-4FFF-8A3E-811C67D0572E} = {CBC1BF34-4966-442A-808B-8BBC9CEF9C68}
+		{56E40DF6-7840-4449-8058-590442668044} = {A7207CBD-2D1A-4846-B0C4-6D025BE238DF}
 	EndGlobalSection
 EndGlobal
