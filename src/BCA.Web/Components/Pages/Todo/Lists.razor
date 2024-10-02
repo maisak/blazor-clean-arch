@@ -5,6 +5,10 @@
 @using MediatR
 
 <PageTitle>Lists</PageTitle>
+<div class="alert alert-secondary" role="alert">
+    This is a list of your todo lists. You can create, edit and delete them.
+    Lists you delete will be removed from this table and visible on <a href="/lists-restore">restore</a> page.
+</div>
 
 @if (TodoLists.Any())
 {
@@ -19,9 +23,19 @@
         @foreach (var todoList in TodoLists)
         {
             <tr>
-                <td>@todoList.Name</td>
+                <td class="align-middle">@todoList.Name</td>
                 <td class="text-end">
-                    <a class="btn btn-primary" role="button" href="/edit-todo/@todoList.Id">Edit</a>
+                    <a class="btn btn-primary" role="button" href="/edit-todo/@todoList.Id">
+                        <span class="bi-pencil-square"></span>
+                    </a>
+                    <form method="post" class="d-inline" 
+                          @formname="@($"deleteList{todoList.Id}")"
+                          @onsubmit="() => DeleteList(todoList.Id)">
+                        <button class="btn btn-primary">
+                            <span class="bi-x-square"></span>
+                        </button>
+                        <AntiforgeryToken/>
+                    </form>
                 </td>
             </tr>
         }
@@ -36,6 +50,7 @@ else
 }
 
 @code {
+    [Inject] private NavigationManager Navigation { get; set; } = null!;
     [Inject] private ISender Sender { get; set; } = null!;
     private List<TodoListDto> TodoLists { get; set; } = [];
 
@@ -44,4 +59,9 @@ else
         TodoLists = await Sender.Send(new GetTodoLists());
     }
 
+    private async Task DeleteList(int id)
+    {
+        await Sender.Send(new DeleteTodoList(id));
+        Navigation.Refresh();
+    }
 }

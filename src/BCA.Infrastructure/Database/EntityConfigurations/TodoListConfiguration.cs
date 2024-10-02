@@ -9,6 +9,8 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
 	public void Configure(EntityTypeBuilder<TodoList> builder)
 	{
 		builder.ToTable("TodoLists");
-		builder.Property(f => f.Name).IsRequired().HasMaxLength(100);
+		builder.HasIndex(x => x.DeletedAt);
+		builder.HasQueryFilter(x => x.DeletedAt == null);
+		builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
 	}
 }

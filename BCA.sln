@@ -34,6 +34,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{56E40DF6-7840-4449-8058-590442668044}"
 	ProjectSection(SolutionItems) = preProject
 		docs\solution-overview.png = docs\solution-overview.png
+		docs\settings.png = docs\settings.png
 	EndProjectSection
 EndProject
 Global

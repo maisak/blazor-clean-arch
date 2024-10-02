@@ -1,0 +1,59 @@
+﻿@page "/lists-restore"
+
+@using BCA.Application.Features.Todo
+@using BCA.Application.Models.Todo
+@using MediatR
+
+<PageTitle>Restore lists</PageTitle>
+<div class="alert alert-secondary" role="alert">
+    This page is a demo of `soft-delete` feature. A table of previously deleted todo lists. You can restore them here.
+</div>
+
+@if (DeletedLists.Any())
+{
+    <table class="table table-borderless table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th class="text-end">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var todoList in DeletedLists)
+        {
+            <tr>
+                <td class="align-middle">@todoList.Name</td>
+                <td class="text-end">
+                    <form @formname="@($"deleteList{todoList.Id}")" method="post" 
+                          @onsubmit="() => RestoreList(todoList.Id)">
+                        <button class="btn btn-primary">Restore</button>
+                        <AntiforgeryToken/>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>If you don't see anything here - probably there are no deleted lists.</p>
+    <p>Go to <a href="/lists">lists</a> page and delete some.</p>
+}
+
+@code {
+    [Inject] private NavigationManager Navigation { get; set; } = null!;
+    [Inject] private ISender Sender { get; set; } = null!;
+    private List<TodoListDto> DeletedLists { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        DeletedLists = await Sender.Send(new GetDeletedTodoLists());
+    }
+
+    private async Task RestoreList(int id)
+    {
+        await Sender.Send(new RestoreTodoList(id));
+        Navigation.Refresh();
+    }
+}

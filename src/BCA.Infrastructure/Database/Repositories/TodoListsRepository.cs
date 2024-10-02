@@ -12,6 +12,14 @@ internal sealed class TodoListsRepository(ApplicationDbContext dbContext)
 		return await dbContext.Set<TodoList>().ToListAsync(cancellationToken);
 	}
 
+	public async Task<List<TodoList>> GetDeletedTodoLists(CancellationToken cancellationToken)
+	{
+		return await dbContext.Set<TodoList>()
+			.IgnoreQueryFilters()
+			.Where(x => x.DeletedAt != null)
+			.ToListAsync(cancellationToken);
+	}
+
 	public async Task<TodoList?> GetTodoList(int id, CancellationToken cancellationToken)
 	{
 		return await dbContext.Set<TodoList>()
